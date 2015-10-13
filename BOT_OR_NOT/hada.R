@@ -1,17 +1,32 @@
 #BOTS OR HUMANS
+#Akshay Goel; Hiro Sayama; Abhik Ghosh; Daphne Chui
 
 ##################################################################################################
 
-update.packages()
-install.packages("glmmLasso")
+#  Run on new computer or environment
+
+# update.packages()
+
+# install.packages("glmmLasso")
+
+#Citation: Hlavac, Marek (2015). stargazer: Well-Formatted Regression and Summary Statistics Tables. R package version 5.2. http://CRAN.R-project.org/package=stargazer
+# install.packages("stargazer")  
+
+# install.packages("knitr", repos = "http://lib.stat.cmu.edu/R/CRAN/")
+
+# install.packages("R2HTML")
+
+##################################################################################################
 
 #This will set the directory
-BASE_DIRECTORY = "~/Desktop/Data/"
+BASE_DIRECTORY = getwd()
 
 #This will read the trainer data
 TRAIN_CSV = "train.csv"
 print(paste("# Loading training data ", TRAIN_CSV," ...", sep=""))
 TRAIN_DATA = read.csv(paste(BASE_DIRECTORY, TRAIN_CSV, sep="/"),stringsAsFactors = TRUE, na.strings = c("NA", ""))
+#Save original data format for reference
+write.table(head(TRAIN_DATA), file = "TrainerData_Orignal.txt")
 
 #Print data
 print(paste("# Printing training data  ...", sep=""))
@@ -76,6 +91,9 @@ print(paste("# Preparing training data  ...", sep=""))
 #Clean the Data.....
 droplevels.data.frame(TRAIN_DATA)
 print(paste("# Data is now prepared in numeric format  ...", sep=""))
+
+#Save prepared data format for print
+write.table(head(TRAIN_DATA), file = "TrainerData_Prepared.txt")
 
 
 ####################################################################################
@@ -166,6 +184,50 @@ print(BID_DATA)
 
 ################################################################################
 
-print("Humans (0); Bots(1)")
+print(paste("# Number of Humans (0) and Bots(1)", sep=""))
 summary.factor(BID_DATA$outcome)
+results_from_model1 = summary.factor(BID_DATA$outcome)
+
+
+library(stargazer)
+
+stargazer(TRAIN_DATA, type = "text", title="Descriptive Statistics for Trainer Data", digits=1, out="table1.htm", flip=TRUE)
+stargazer(BID_DATA, type = "text", title="Descriptive Statistics for Test Data", digits=1, out="table2.htm", flip=TRUE)
+
+
+
+#Alternative Regression Models###########################################################################################
+
+mylogit_1 <- glm(outcome ~ bid_id + bidder_id + auction + merchandise + device + time + country + ip + url, data = TRAIN_DATA, family = "binomial")
+mylogit_2 <- glm(outcome ~ bidder_id + auction + merchandise + device + time + country + ip + url, data = TRAIN_DATA, family = "binomial")
+
+stargazer(mylogit_1,mylogit_2,  type="html", title="Descriptive Statistics for Trainer Data", out="models.htm", flip=TRUE)
+
+################################################################################
+
+#Predict Outcome for Test Data using alternative Regression Model.... 
+
+BID_DATA$outcome <- predict(mylogit_2, newdata = BID_DATA, type = "response")
+droplevels.data.frame(BID_DATA)
+BID_DATA$outcome <- (round(1-BID_DATA$outcome))
+
+print(BID_DATA)
+
+################################################################################
+
+print(paste("# Number of Humans (0) and Bots(1)", sep=""))
+summary.factor(BID_DATA$outcome)
+results_from_model2 = summary.factor(BID_DATA$outcome)
+
+print("Results from first Regression Model")
+results_from_model1
+
+write.table(results_from_model1, file = "Result1.txt")
+
+print("Results from second Regression Model")
+results_from_model2
+
+write.table(results_from_model2, file = "Result2.txt")
+
+
 

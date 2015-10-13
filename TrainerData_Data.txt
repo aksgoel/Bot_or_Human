@@ -1,0 +1,7 @@
+"bid_id" "bidder_id" "auction" "merchandise" "device" "time" "country" "ip" "url" "outcome"
+"1" 89 "037d9f10da403d8d5f94b6e2957a3702f6x07" "cxcqe" "home goods" "phone71" "onepm" "za" "38.122.182.50" "q3ptdym7sr4agaj" 0
+"2" 133 "0547dbd3ecb4a293913f138d60b586fdf4ane" "9e6f5" "sporting goods" "phone90" "onepm" "mx" "96.217.45.28" "vasstdc27m7nks3" 0
+"3" 134 "037d9f10da403d8d5f94b6e2957a3702f6x07" "sc1cr" "home goods" "phone33" "onepm" "th" "86.200.121.249" "ztwq32qvmyby357" 0
+"4" 381 "0565a780f2c5b46837bbe9739ef15ea92fdu0" "gjknq" "mobile" "phone177" "onepm" "in" "113.172.86.24" "q2xfkx8ike6ema4" 0
+"5" 398 "055282b75717345ba6f53d40e9e6d6c56qrzp" "crsvb" "sporting goods" "phone181" "onepm" "it" "228.147.92.222" "9ysjpbdvbimygsc" 0
+"6" 500 "037d9f10da403d8d5f94b6e2957a3702f6x07" "k3qaa" "home goods" "phone208" "onepm" "in" "243.69.78.218" "tpvyo4b9pb5grhu" 0
