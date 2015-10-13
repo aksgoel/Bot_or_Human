@@ -178,7 +178,7 @@ print(paste("# Test Data is now prepared in numeric format  ...", sep=""))
 
 BID_DATA$outcome <- predict(mylogit, newdata = BID_DATA, type = "response")
 droplevels.data.frame(BID_DATA)
-BID_DATA$outcome <- (round(1-BID_DATA$outcome))
+BID_DATA$outcome <- (round(BID_DATA$outcome))
 
 print(BID_DATA)
 
@@ -209,7 +209,7 @@ stargazer(mylogit_1,mylogit_2,  type="html", title="Descriptive Statistics for T
 
 BID_DATA$outcome <- predict(mylogit_2, newdata = BID_DATA, type = "response")
 droplevels.data.frame(BID_DATA)
-BID_DATA$outcome <- (round(1-BID_DATA$outcome))
+BID_DATA$outcome <- (round(BID_DATA$outcome))
 
 print(BID_DATA)
 
