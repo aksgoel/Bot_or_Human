@@ -1,2 +1,3 @@
-# INSEAD_HADA_PROJECT
-BOT or HUMAN
+# BOT or HUMAN
+
+Regression Analysis 101 using R
