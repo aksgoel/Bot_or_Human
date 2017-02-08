@@ -228,6 +228,3 @@ print("Results from second Regression Model")
 results_from_model2
 
 write.table(results_from_model2, file = "Result2.txt")
-
-
-
